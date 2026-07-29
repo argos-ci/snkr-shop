@@ -4,55 +4,13 @@ import { useCart } from '@/components/CartContext';
 import { Main } from '@/components/Main';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Sneakers } from '@/lib/types';
-import { cn, fetchProduct } from '@/lib/utils';
-import {
-  BadgeAlert,
-  BadgeCheck,
-  BadgeX,
-  ChevronLeft,
-  Heart,
-} from 'lucide-react';
+import { fetchProduct } from '@/lib/utils';
+import { BadgeCheck, BadgeX, ChevronLeft } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { toast } from 'sonner';
-
-const SizeToggleGroup = ({
-  value,
-  onValueChange,
-  disabled = false,
-  disabledSizes = [],
-}: {
-  value: string;
-  onValueChange: (value: string) => void;
-  disabled?: boolean;
-  disabledSizes: number[];
-}) => (
-  <ToggleGroup
-    type="single"
-    variant="outline"
-    className="flex-wrap justify-start"
-    value={value}
-    onValueChange={onValueChange}
-  >
-    {Array.from({ length: 8 }, (_, i) => {
-      const size = 5 + i;
-      return (
-        <ToggleGroupItem
-          value={String(size)}
-          key={size}
-          disabled={disabled || disabledSizes.includes(size)}
-          className="h-10 w-10"
-        >
-          {size}
-        </ToggleGroupItem>
-      );
-    })}
-  </ToggleGroup>
-);
 
 const DetailCard = ({
   sneakers: {
@@ -70,21 +28,10 @@ const DetailCard = ({
   const cart = useCart();
   const router = useRouter();
   const itemFromCart = cart.items.find((item) => item.id === id);
-  const [size, setSize] = useState<number | null>(itemFromCart?.size ?? null);
-  const [missingSize, setMissingSize] = useState<boolean>(false);
   const gender = genders?.[0];
 
   function handleAddToCart(id: number) {
-    if (!size) {
-      setMissingSize(true);
-      toast.warning('Choose size before add to cart.', {
-        icon: <BadgeAlert className="size-5 text-orange-500" />,
-      });
-      return;
-    }
-
-    setMissingSize(false);
-    cart.addItem({ id, size });
+    cart.addItem({ id });
     toast.success('Added to cart.', {
       icon: <BadgeCheck className="size-5 text-green-500" />,
       action: {
@@ -95,8 +42,6 @@ const DetailCard = ({
   }
 
   function handleRemoveFromCart(id: number) {
-    setMissingSize(false);
-    setSize(null);
     cart.removeItem(id);
     toast.error('Removed from cart.', {
       icon: <BadgeX className="size-5 text-destructive" />,

@@ -34,8 +34,7 @@ export const CartCard = ({
         {product.story_html}
       </div>
 
-      <div className="mt-6 flex items-center justify-between gap-6">
-        <div className="text-lg font-semibold">Size: {item.size}</div>
+      <div className="mt-6 flex items-center justify-end gap-6">
         <div className="flex items-center gap-4">
           <div className="text-lg font-semibold">${product.price}</div>
           <Button
