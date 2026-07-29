@@ -77,23 +77,28 @@ const DetailCard = ({
             </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap-reverse items-start justify-between gap-3 md:mt-0">
+          <div className="relative mt-6 flex flex-wrap-reverse items-start justify-end gap-3 md:mt-0">
+            <div className="absolute right-0 top-0 pb-2 text-right text-2xl font-semibold text-muted-foreground">
+              ${price}
+            </div>
             {itemFromCart ? (
               <Button
                 size="lg"
                 variant="destructive"
+                className="relative"
                 onClick={() => handleRemoveFromCart(id)}
               >
                 REMOVE ITEM
               </Button>
             ) : (
-              <Button size="lg" onClick={() => handleAddToCart(id)}>
+              <Button
+                size="lg"
+                className="relative"
+                onClick={() => handleAddToCart(id)}
+              >
                 ADD TO CART
               </Button>
             )}
-            <div className="pb-2 text-right text-2xl font-semibold text-muted-foreground">
-              ${price}
-            </div>
           </div>
         </div>
       </Card>
