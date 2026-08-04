@@ -16,7 +16,6 @@ const DetailCard = ({
   sneakers: {
     id,
     original_picture_url: img,
-    price,
     story_html: description,
     name,
     brand_name: brand,
@@ -63,7 +62,7 @@ const DetailCard = ({
               width={350}
               height={350}
               alt="sneakers-preview"
-              className="h-[180px] w-[180px] shrink-0 object-cover"
+              className="-my-8 h-[350px] w-[350px] max-w-none shrink-0 object-cover md:my-0"
             />
           </div>
 
@@ -91,9 +90,6 @@ const DetailCard = ({
                 ADD TO CART
               </Button>
             )}
-            <div className="pb-2 text-right text-2xl font-semibold text-muted-foreground">
-              ${price}
-            </div>
           </div>
         </div>
       </Card>
