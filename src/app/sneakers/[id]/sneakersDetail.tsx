@@ -68,10 +68,15 @@ const DetailCard = ({
           </div>
 
           <div>
-            <div className="text-sm uppercase text-muted-foreground">
-              {gender}&apos;s {brand}
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-sm uppercase text-muted-foreground">
+                  {gender}&apos;s {brand}
+                </div>
+                <h1 className="font-semibold uppercase md:text-2xl">{name}</h1>
+              </div>
+              <div className="text-2xl font-semibold">${price}</div>
             </div>
-            <h1 className="font-semibold uppercase md:text-2xl">{name}</h1>
             <div className="mt-3 line-clamp-4 flex-1 text-sm text-black md:mt-7 md:line-clamp-4">
               {description}
             </div>
@@ -91,9 +96,6 @@ const DetailCard = ({
                 ADD TO CART
               </Button>
             )}
-            <div className="pb-2 text-right text-2xl font-semibold text-muted-foreground">
-              ${price}
-            </div>
           </div>
         </div>
       </Card>

@@ -10,7 +10,7 @@ test('open product detail', async ({ page }) => {
     .filter({ hasText: 'Crimson Tint' })
     .filter({ has: page.getByRole('button') })
     .last()
-    .getByRole('button', { name: 'Preview' })
+    .getByRole('link', { name: 'Preview' })
     .click();
 
   // Check the redirection
