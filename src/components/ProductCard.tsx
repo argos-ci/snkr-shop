@@ -64,7 +64,7 @@ export const ProductCard = ({
             <ShoppingCart className="size-4" />
             {itemFromCart ? 'In cart' : 'Add to cart'}
           </Button>
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="ghost" size="sm" asChild>
             <Link href={`/sneakers/${id}`}>Preview</Link>
           </Button>
         </div>
